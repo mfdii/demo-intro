@@ -1,0 +1,12 @@
+{
+  "name": "Production",
+  "default_attributes": {
+    "apps": {}
+  },
+  "override_attributes": {
+    "apps": {}
+  },
+  "json_class": "Chef::Environment",
+  "description": "",
+  "chef_type": "environment"
+}

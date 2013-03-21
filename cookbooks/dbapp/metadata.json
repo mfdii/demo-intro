@@ -1,0 +1,39 @@
+{
+  "name": "dbapp",
+  "description": "",
+  "maintainer": "Opscode, Inc",
+  "maintainer_email": "cookbooks@opscode.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "debian": ">= 0.0.0",
+    "ubuntu": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0"
+  },
+  "dependencies": {
+    "tomcat": ">= 0.0.0",
+    "java":   ">= 0.0.0",
+    "jpackage": ">= 0.0.0",
+    "haproxy":  ">= 0.0.0",
+    "mysql":   ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "dbapp::default": ""
+  },
+  "version": "1.0.0"
+}

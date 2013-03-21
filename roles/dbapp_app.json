@@ -1,0 +1,27 @@
+{
+  "name": "dbapp_app",
+  "description": "dbapp Tomcat 6 application server.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "apps" : {
+      "dbapp" : {
+          "db" : {
+              "role" : "dbapp_db"
+          },
+          "search" : {
+            "retries" : 12,
+            "retry_delay" : 5
+          }
+      }
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[application]",
+    "recipe[dbapp]"
+  ],
+  "env_run_lists": {
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "base_ubuntu",
+  "description": "Base role applied to all nodes.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "apt" : {
+      "update" : false
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[base_core]",
+    "recipe[apt]"
+  ],
+  "env_run_lists": {
+  }
+}

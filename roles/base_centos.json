@@ -1,0 +1,20 @@
+{
+  "name": "base_centos",
+  "description": "Base role applied to all nodes.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "yum" : {
+      "update" : false
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "role[base_core]",
+    "recipe[yum::epel]",
+    "recipe[yum]"
+  ],
+  "env_run_lists": {
+  }
+}

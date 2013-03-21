@@ -1,0 +1,24 @@
+{
+  "name": "dbapp_db",
+  "description": "Database master for the dbapp application.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "apps" : {
+      "dbapp" : {
+          "db" : {
+              "role" : "dbapp_db"
+          }
+      }
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[database::master@0.99.1]",
+    "recipe[dbapp::db_bootstrap]",
+    "recipe[mysql::client@1.0.3]"
+  ],
+  "env_run_lists": {
+  }
+}
