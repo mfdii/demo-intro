@@ -16,7 +16,8 @@
     "java":   ">= 0.0.0",
     "jpackage": ">= 0.0.0",
     "haproxy":  ">= 0.0.0",
-    "mysql":   ">= 0.0.0"
+    "mysql":   ">= 0.0.0",
+    "rolling_deploy": ">= 0.0.0"
   },
   "recommendations": {
   },
