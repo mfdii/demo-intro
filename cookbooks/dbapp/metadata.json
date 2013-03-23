@@ -34,7 +34,10 @@
   "groupings": {
   },
   "recipes": {
-    "dbapp::default": ""
+    "dbapp::default": "",
+    "dbapp::mysql": "",
+    "dbapp::status": "",
+    "dbapp::db_bootstrap": ""
   },
   "version": "1.0.0"
 }

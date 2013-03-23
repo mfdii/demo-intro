@@ -12,6 +12,9 @@
       }
     },
     "chef_client" : {
+        "server_url" : "https://chef.localdomain/organizations/opscode",
+        "validation_client_name" : "opscode-validator",
+        "verbose_logging" : "true",
         "bin" : "/usr/bin/chef-client",
         "conf_dir" : "/etc/chef",
         "interval" : "20",
@@ -23,9 +26,7 @@
     "recipe[ohai]",
     "recipe[chef-client::config]",
     "recipe[chef-client]",
-    "recipe[chef-client::service]",
     "recipe[sudo]",
-    "recipe[git]",
     "recipe[build-essential]"
   ],
   "env_run_lists": {

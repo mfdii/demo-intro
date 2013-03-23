@@ -132,7 +132,8 @@ log_warnings
 #
 # * Replication
 #
-read_only = <%= node['mysql']['read_only'] %>
+server-id = <%= node['name'] %>
+#read_only = <%= node['mysql']['read_only'] %>
 
 
 #

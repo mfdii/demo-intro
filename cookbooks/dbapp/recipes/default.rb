@@ -1,9 +1,9 @@
 #
-# Author:: Seth Chisamore <schisamo@opscode.com>
+# Author:: cookbooks@opscode.com
 # Cookbook Name:: dbapp
-# Recipe:: db_bootstrap
+# Recipe:: default
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2009-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,10 +18,4 @@
 # limitations under the License.
 #
 
-service "tomcat" do
-  service_name "tomcat6"
-  retries 3
-  retry_delay 5
-  action [ :stop, :start ]
-  not_if "test -d #{node['tomcat']['home']}-admin"
-end
+

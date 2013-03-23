@@ -18,63 +18,89 @@ Vagrant::Config.run do |config|
       :single => {
           :ip       => '192.168.65.90',
           :memory   => 756,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_db dbapp_app dbapp_lb )
+          :env      => 'Advanced',
+          :run_list => %w( role[base_ubuntu] recipe[dbapp::mysql] recipe[dbapp::db_bootstrap] recipe[dbapp::tomcat] recipe[dbapp::haproxy] ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'bootstrap_group' => ID, } } } }
       },
-      :db => {
+      :master_db => {
           :ip       => '192.168.65.95',
           :memory   => 356,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_db )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_db ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'omega', } } } }
        },
-      :app1 => {
+      :master_db_2 => {
+          :ip       => '192.168.65.96',
+          :memory   => 356,
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_db ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'omega', } } } }
+       },
+      :slave_db => {
+          :ip       => '192.168.65.98',
+          :memory   => 356,
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_db ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'omega', } } } }
+       },
+
+      :app_blue => {
           :ip       => '192.168.65.101',
           :memory   => 512,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_app )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_app ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'blue', } } } }
       },
-      :app2 => {
+      :app_blue_2 => {
           :ip       => '192.168.65.102',
           :memory   => 512,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_app )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_app ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'blue', } } } }
       },
-      :app10 => {
-          :ip       => '192.168.65.110',
+      :app_blue_3 => {
+          :ip       => '192.168.65.103',
           :memory   => 512,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_app )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_app ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'blue', } } } }
       },
-      :app11 => {
+
+      :app_green => {
           :ip       => '192.168.65.111',
           :memory   => 512,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_app )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_app ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'green', } } } }
       },
-      :app20 => {
-          :ip       => '192.168.65.120',
+      :app_green_2 => {
+          :ip       => '192.168.65.112',
           :memory   => 512,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_app )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_app ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'green', } } } }
       },
-      :app21 => {
-          :ip       => '192.168.65.121',
+      :app_green_3 => {
+          :ip       => '192.168.65.113',
           :memory   => 512,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_app )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_app ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'green', } } } }
       },
+
       :lb => {
           :ip       => '192.168.65.131',
           :memory   => 256,
-          :env      => ENV['CHEF_ENV'],
-          :roles     => %w( base_ubuntu dbapp_lb )
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_lb ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'alpha', } } } }
       },
-      :cd => {
-          :box    => 'cd',
-          :ip     => '192.168.65.201',
-          :memory => 1512,
-          :env      => ENV['CHEF_ENV'],
-          :roles  => %w( continuous_delivery )
+      :lb_2 => {
+          :ip       => '192.168.65.132',
+          :memory   => 256,
+          :env      => 'Advanced',
+          :roles     => %w( base_ubuntu dbapp_lb ),
+          :attr     => { 'apps' => { 'dbapp' => { 'rolling_deploy' => { 'leg' => 'alpha', } } } }
       },
 
     }.each do |name,cfg|
@@ -83,10 +109,16 @@ Vagrant::Config.run do |config|
         chef_env = create_chef_env(group_label)
 
         hash = Digest::MD5.new.hexdigest(chef_env)
-        vagrant_group = "/#{chef_env.sub('-','/')}"
+        vagrant_group = "/#{ chef_env.sub('-','/') }"
 
         config.vm.define name do |vm_cfg|
-            vm_cfg.vm.host_name = "dbapp-#{name}-#{hash}"
+            vm_cfg.vm.host_name = "#{ name.to_s.sub('_','-') }-dbapp"
+            if m = vm_cfg.vm.host_name.match(/[0-9]$/) then
+                vm_cfg.vm.host_name.insert(0, "#{m}.")
+            else
+                vm_cfg.vm.host_name.chop
+                vm_cfg.vm.host_name.insert(0, '1-')
+            end
             vm_cfg.vm.network :hostonly, cfg[:ip] if cfg[:ip]
             vm_cfg.vm.box = cfg[:box] if cfg[:box]
 

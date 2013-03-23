@@ -1,0 +1,12 @@
+{
+  "name": "Advanced",
+  "default_attributes": {
+    "apps": { "dbapp":{} }
+  },
+  "override_attributes": {
+    "apps": { "dbapp":{} }
+  },
+  "json_class": "Chef::Environment",
+  "description": "",
+  "chef_type": "environment"
+}
