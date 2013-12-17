@@ -81,7 +81,7 @@ class Chef
               raise TomcatUserDataBagNotFound if e.message.match(/404/)
               raise e
             end
-            decrypt_items(items)
+       #     decrypt_items(items)
           end
 
           users.each { |user| validate_user_item(user) }
@@ -97,15 +97,15 @@ class Chef
           end
         end
 
-        def decrypt_items(items)
-          items.collect do |item|
-            EncryptedDataBagItem.new(item, encrypted_secret)
-          end
-        end
+        #def decrypt_items(items)
+        #  items.collect do |item|
+        #    EncryptedDataBagItem.new(item, encrypted_secret)
+        #  end
+        #end
 
-        def encrypted_secret
-          @encrypted_secret ||= EncryptedDataBagItem.load_secret
-        end
+        #def encrypted_secret
+        #  @encrypted_secret ||= EncryptedDataBagItem.load_secret
+        #end
     end
   end
 end

@@ -37,7 +37,7 @@ frontend https
 
 backend servers-http
   <% @pool_members.each do |member| -%>
-  server <%= member[:hostname] %> <%= member[:ipaddress] %>:<%= node['haproxy']['member_port'] %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
+  server <%= member[:hostname] %> <%= member[:ipaddress] %>:<%= member[:port] %> weight 1 maxconn <%= node['haproxy']['member_max_connections'] %> check
   <% end -%>
   <% if node["haproxy"]["httpchk"] -%>
   option httpchk <%= node["haproxy"]["httpchk"] %>

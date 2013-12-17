@@ -12,7 +12,7 @@
       }
     },
     "chef_client" : {
-        "server_url" : "https://chef.localdomain/organizations/opscode",
+        "server_url" : "https://chef11/organizations/opscode",
         "validation_client_name" : "opscode-validator",
         "verbose_logging" : "true",
         "bin" : "/usr/bin/chef-client",

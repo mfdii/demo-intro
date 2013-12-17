@@ -1,0 +1,18 @@
+{
+  "name": "fe_tomcat",
+  "description": "Role for a frontend tomcat server.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "tomcat" : {
+      "server_group" : "front_end"
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[tomcat]"
+  ],
+  "env_run_lists": {
+  }
+}

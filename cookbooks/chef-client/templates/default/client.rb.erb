@@ -66,3 +66,6 @@ environment "<%= @chef_environment %>"
     exception_handlers << <%= handler["class"] %>.new(<%= handler["arguments"].join(',') %>)
   <% end %>
 <% end %>
+
+
+whitelist({ "command1" => "echo true", "command2" => "sleep 10", "chef-client" => "chef-client" })

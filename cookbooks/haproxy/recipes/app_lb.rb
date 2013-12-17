@@ -34,10 +34,10 @@ pool_members.map! do |member|
         member['cloud']['public_ipv4']
       end
     else
-      member['ipaddress']
+      member['ipaddress_internal']
     end
   end
-  {:ipaddress => server_ip, :hostname => member['hostname']}
+  {:ipaddress => server_ip, :hostname => member['hostname'], :port => member['tomcat']['port']}
 end
 
 package "haproxy" do
