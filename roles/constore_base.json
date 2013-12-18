@@ -1,0 +1,23 @@
+{
+  "name": "constore_base",
+  "description": "Role for Convenience Store Managed Orgs and Repos.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "constore" : {
+      "repos" : {
+        "repo1": {
+          "name": "demo-intro",
+          "url": "https://github.com/mfdii/demo-intro"
+          }
+        }
+      }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[constore]"
+  ],
+  "env_run_lists": {
+  }
+}

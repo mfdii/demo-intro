@@ -23,17 +23,18 @@ end
 
 
 
-node["constore"]["repos"].each do |repo|
+node["constore"]["repos"].each do |key,repos|
 
-	directory "#{node["constore"]["repo_dir"]}/#{repo.name}" do
-		action :create
-		recursive true
-	end
+		directory "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}" do
+			action :create
+			recursive true
+		end
 
-	git "#{node["constore"]["repo_dir"]}/#{repo.name}" do
-		repository repo.url
-		action :sync
-	end
+		git "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}" do
+			action :sync
+			destination "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}"
+			repository node["constore"]["repos"][key]["url"]
+		end
 
 end
 
