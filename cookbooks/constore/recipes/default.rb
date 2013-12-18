@@ -34,6 +34,7 @@ node["constore"]["repos"].each do |key,repos|
 			action :sync
 			destination "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}"
 			repository node["constore"]["repos"][key]["url"]
+			revision "master"
 		end
 
 end
