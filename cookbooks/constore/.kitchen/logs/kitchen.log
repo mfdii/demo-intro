@@ -1,0 +1,29 @@
+I, [2013-12-18T09:33:08.100224 #83371]  INFO -- Kitchen: -----> Starting Kitchen (v1.1.1)
+E, [2013-12-18T09:33:08.100493 #83371] ERROR -- Kitchen: ------Exception-------
+E, [2013-12-18T09:33:08.100537 #83371] ERROR -- Kitchen: Class: Kitchen::UserError
+E, [2013-12-18T09:33:08.100583 #83371] ERROR -- Kitchen: Message: Kitchen YAML file /Users/michael/repos/intro/cookbooks/constore/.kitchen.yml does not exist.
+E, [2013-12-18T09:33:08.100619 #83371] ERROR -- Kitchen: ------Backtrace-------
+E, [2013-12-18T09:33:08.100664 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/loader/yaml.rb:59:in `read'
+E, [2013-12-18T09:33:08.100705 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/config.rb:78:in `data'
+E, [2013-12-18T09:33:08.100742 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/config.rb:66:in `suites'
+E, [2013-12-18T09:33:08.100774 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/config.rb:90:in `filter_instances'
+E, [2013-12-18T09:33:08.100806 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/config.rb:72:in `build_instances'
+E, [2013-12-18T09:33:08.100829 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/config.rb:52:in `instances'
+E, [2013-12-18T09:33:08.100859 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/cli.rb:342:in `get_filtered_instances'
+E, [2013-12-18T09:33:08.100884 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/cli.rb:327:in `parse_subcommand'
+E, [2013-12-18T09:33:08.100925 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/cli.rb:141:in `block in test'
+E, [2013-12-18T09:33:08.100959 #83371] ERROR -- Kitchen: /Users/michael/.rvm/rubies/ruby-1.9.3-p448/lib/ruby/1.9.1/benchmark.rb:280:in `measure'
+E, [2013-12-18T09:33:08.100991 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/cli.rb:137:in `test'
+E, [2013-12-18T09:33:08.101013 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/thor-0.18.1/lib/thor/command.rb:27:in `run'
+E, [2013-12-18T09:33:08.101045 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/thor-0.18.1/lib/thor/invocation.rb:120:in `invoke_command'
+E, [2013-12-18T09:33:08.101066 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/cli.rb:288:in `invoke_task'
+E, [2013-12-18T09:33:08.101085 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/thor-0.18.1/lib/thor.rb:363:in `dispatch'
+E, [2013-12-18T09:33:08.101105 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/thor-0.18.1/lib/thor/base.rb:439:in `start'
+E, [2013-12-18T09:33:08.101125 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/bin/kitchen:13:in `block in <top (required)>'
+E, [2013-12-18T09:33:08.101144 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/lib/kitchen/errors.rb:81:in `with_friendly_errors'
+E, [2013-12-18T09:33:08.101164 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/gems/test-kitchen-1.1.1/bin/kitchen:13:in `<top (required)>'
+E, [2013-12-18T09:33:08.101183 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/bin/kitchen:23:in `load'
+E, [2013-12-18T09:33:08.101202 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/bin/kitchen:23:in `<main>'
+E, [2013-12-18T09:33:08.101225 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/bin/ruby_executable_hooks:15:in `eval'
+E, [2013-12-18T09:33:08.101245 #83371] ERROR -- Kitchen: /Users/michael/.rvm/gems/ruby-1.9.3-p448/bin/ruby_executable_hooks:15:in `<main>'
+E, [2013-12-18T09:33:08.101269 #83371] ERROR -- Kitchen: ----------------------

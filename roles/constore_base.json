@@ -15,9 +15,6 @@
   "override_attributes": {
   },
   "chef_type": "role",
-  "run_list": [
-    "recipe[constore]"
-  ],
   "env_run_lists": {
   }
 }

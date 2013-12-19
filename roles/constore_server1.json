@@ -8,7 +8,9 @@
     "constore" : {
       "repos" : {
         "repo1":{
-          "client-key": "demo-intro-server-1"
+          "client_key": "demo-intro-server-1",
+          "client_name": "chef",
+          "org_name": "opscode"
         }
       }
     }

@@ -34,7 +34,26 @@ node["constore"]["repos"].each do |key,repos|
 			action :sync
 			destination "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}"
 			repository node["constore"]["repos"][key]["url"]
-			revision "master"
+			notifies :upload, "constore_cookbook[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}]"
+		end
+		
+		search(:constore_clients,"id:#{node["constore"]["repos"][key]["client_key"]}").each do |key_data|
+			template "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/#{node["constore"]["repos"][key]["client_name"]}.pem" do
+				source "client.pem.erb"
+				owner "root"
+				group "root"
+				mode "0600"
+				variables(
+					:key => key_data["key"].join("\n")
+				)
+			end
+		end
+
+		constore_cookbook "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}" do
+			org_name node["constore"]["repos"][key]["org_name"]
+			url "https://127.0.0.1/organizations/#{node["constore"]["repos"][key]["org_name"]}"
+			client_key "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/#{node["constore"]["repos"][key]["client_name"]}.pem"
+			client_name node["constore"]["repos"][key]["client_name"]
 		end
 
 end
