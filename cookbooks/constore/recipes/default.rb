@@ -25,22 +25,25 @@ end
 
 node["constore"]["repos"].each do |key,repos|
 
-		directory "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}" do
+		repo_dir = node["constore"]["repo_dir"]
+		current_repo = node["constore"]["repos"][key]
+
+		directory "#{repo_dir}/#{current_repo["name"]}" do
 			action :create
 			recursive true
 		end
 
-		git "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}" do
+		git "#{repo_dir}/#{current_repo["name"]}" do
 			action :sync
-			destination "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}"
-			repository node["constore"]["repos"][key]["url"]
-			notifies :upload, "constore_cookbook[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/cookbooks]"			
-			notifies :upload, "constore_role[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/roles]"
-			notifies :upload, "constore_environment[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/environments]"
+			destination "#{repo_dir}/#{current_repo["name"]}"
+			repository current_repo["url"]
+			notifies :upload, "constore_cookbook[#{repo_dir}/#{current_repo["name"]}/cookbooks]"			
+			notifies :upload, "constore_role[#{repo_dir}/#{current_repo["name"]}/roles]"
+			notifies :upload, "constore_environment[#{repo_dir}/#{current_repo["name"]}/environments]"
 		end
 		
-		search(:constore_clients,"id:#{node["constore"]["repos"][key]["client_key"]}").each do |key_data|
-			template "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/#{node["constore"]["repos"][key]["client_name"]}.pem" do
+		search(:constore_clients,"id:#{current_repo["client_key"]}").each do |key_data|
+			template "#{repo_dir}/#{current_repo["name"]}/#{current_repo["client_name"]}.pem" do
 				source "client.pem.erb"
 				owner "root"
 				group "root"
@@ -50,29 +53,29 @@ node["constore"]["repos"].each do |key,repos|
 				)
 			end
 		end
-#comment
-		constore_cookbook "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/cookbooks" do
+
+		constore_cookbook "#{repo_dir}/#{current_repo["name"]}/cookbooks" do
 			action :nothing
-			org_name node["constore"]["repos"][key]["org_name"]
-			server_url "https://127.0.0.1/organizations/#{node["constore"]["repos"][key]["org_name"]}"
-			client_key "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/#{node["constore"]["repos"][key]["client_name"]}.pem"
-			client_name node["constore"]["repos"][key]["client_name"]
+			org_name current_repo["org_name"]
+			server_url "https://127.0.0.1/organizations/#{current_repo["org_name"]}"
+			client_key "#{repo_dir}/#{current_repo["name"]}/#{current_repo["client_name"]}.pem"
+			client_name current_repo["client_name"]
 		end
 
-		constore_role "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/roles" do
+		constore_role "#{repo_dir}/#{current_repo["name"]}/roles" do
 			action :nothing
-			org_name node["constore"]["repos"][key]["org_name"]
-			server_url "https://127.0.0.1/organizations/#{node["constore"]["repos"][key]["org_name"]}"
-			client_key "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/#{node["constore"]["repos"][key]["client_name"]}.pem"
-			client_name node["constore"]["repos"][key]["client_name"]
+			org_name current_repo["org_name"]
+			server_url "https://127.0.0.1/organizations/#{current_repo["org_name"]}"
+			client_key "#{repo_dir}/#{current_repo["name"]}/#{current_repo["client_name"]}.pem"
+			client_name current_repo["client_name"]
 		end
 
-		constore_environment "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/environments" do
+		constore_environment "#{repo_dir}/#{current_repo["name"]}/environments" do
 			action :nothing
-			org_name node["constore"]["repos"][key]["org_name"]
-			server_url "https://127.0.0.1/organizations/#{node["constore"]["repos"][key]["org_name"]}"
-			client_key "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/#{node["constore"]["repos"][key]["client_name"]}.pem"
-			client_name node["constore"]["repos"][key]["client_name"]
+			org_name current_repo["org_name"]
+			server_url "https://127.0.0.1/organizations/#{current_repo["org_name"]}"
+			client_key "#{repo_dir}/#{current_repo["name"]}/#{current_repo["client_name"]}.pem"
+			client_name current_repo["client_name"]
 		end
 
 end
