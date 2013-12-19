@@ -44,7 +44,7 @@ node["constore"]["repos"].each do |key,repos|
 				group "root"
 				mode "0600"
 				variables(
-					:key => key_data["key"].join("\n")
+					:clientkey => key_data["key"].join("\n")
 				)
 			end
 		end
