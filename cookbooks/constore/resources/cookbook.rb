@@ -1,4 +1,5 @@
 actions :upload
+attribute :name, :kind_of => String, :name_attribute => true
 attribute :cookbook_path, :kind_of => String, :name_attribute => true, :required => true
 attribute :org_name, :kind_of => String, :required => true
 attribute :url, :kind_of => String, :required => true
