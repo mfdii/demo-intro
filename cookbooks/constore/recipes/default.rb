@@ -50,7 +50,7 @@ node["constore"]["repos"].each do |key,repos|
 				)
 			end
 		end
-
+#comment
 		constore_cookbook "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/cookbooks" do
 			action :nothing
 			org_name node["constore"]["repos"][key]["org_name"]
