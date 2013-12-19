@@ -34,9 +34,9 @@ node["constore"]["repos"].each do |key,repos|
 			action :sync
 			destination "#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}"
 			repository node["constore"]["repos"][key]["url"]
-			notifies :upload, "constore_cookbook[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}]/cookbooks"			
-			notifies :upload, "constore_role[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}]/roles"
-			notifies :upload, "constore_environment[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}]/environments"
+			notifies :upload, "constore_cookbook[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/cookbooks]"			
+			notifies :upload, "constore_role[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/roles]"
+			notifies :upload, "constore_environment[#{node["constore"]["repo_dir"]}/#{node["constore"]["repos"][key]["name"]}/environments]"
 		end
 		
 		search(:constore_clients,"id:#{node["constore"]["repos"][key]["client_key"]}").each do |key_data|
