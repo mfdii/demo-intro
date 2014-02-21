@@ -72,16 +72,16 @@ template "/etc/tomcat6/server.xml" do
   notifies :restart, resources(:service => "tomcat")
 end
 
-pool_members = partial_search("node", "role:tomcat_fe_lb AND chef_environment:#{node.chef_environment}", :keys => {
-               'name' => ['name']
-               }) || []
+pool_members = search("node", "role:tomcat_fe_lb") || []
+
+Chef::Log.info (pool_members)
 
 pool_members.map! do |member|
-  member['name']
+  member['hostname']
 end
 
-pushy "chef-client-delay" do
+
+pushy "chef-client" do
   action :run
-  wait false
-  nodes pool_members.uniq
+  nodes ["1-lb-intro"]
 end

@@ -6,7 +6,8 @@
   },
   "override_attributes": {
     "tomcat" : {
-      "server_group" : "front_end"
+      "server_group" : "front_end",
+      "port": "52677"
     }
   },
   "chef_type": "role",
