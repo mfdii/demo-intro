@@ -44,7 +44,7 @@ Second, for each server create a `constore_<servername>` role with the follow at
 
 Lastly, a data bag with a client key the server can use to upload the artifacts should be created. The cookbook expects a data bag called `constore_clients`. The data bag items should look like so:
 
-`
+```
 {
 	"id": "demo-intro-server-1",
   "name": "demo-intro-server-1",
@@ -58,7 +58,7 @@ Lastly, a data bag with a client key the server can use to upload the artifacts 
         "BNqsSjuvhPhevtGHlGaSa+FTkzGZbRFHEggILpN/LNXAXjVajFRDQA==",
         "-----END RSA PRIVATE KEY-----"]
 }
-`
+````
 
   
 
