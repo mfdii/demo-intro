@@ -19,12 +19,14 @@ First a role called `constore_base` needs to be created with the following attri
           }
         }
       }
-  },```
+  },
+```
   
 Second, for each server create a `constore_<servername>` role with the follow attributes.
 
 
-```json  "default_attributes": {
+```json  
+"default_attributes": {
     "constore" : {
       "repos" : {
         "repo1":{
@@ -42,7 +44,8 @@ Second, for each server create a `constore_<servername>` role with the follow at
 
 Lastly, a data bag with a client key the server can use to upload the artifacts should be created. The cookbook expects a data bag called `constore_clients`. The data bag items should look like so:
 
-`{
+`
+{
 	"id": "demo-intro-server-1",
   "name": "demo-intro-server-1",
   "key":["-----BEGIN RSA PRIVATE KEY-----",
@@ -54,7 +57,8 @@ Lastly, a data bag with a client key the server can use to upload the artifacts 
         "dkXHjW4wqupHydXognHCi/xF1ZtQu6kdQV7dr1RJgcuhhPFP8qZ2ispxmOxDCyxB",
         "BNqsSjuvhPhevtGHlGaSa+FTkzGZbRFHEggILpN/LNXAXjVajFRDQA==",
         "-----END RSA PRIVATE KEY-----"]
-}`
+}
+`
 
   
 
